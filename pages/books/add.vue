@@ -46,34 +46,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useBooksStore } from '~/store/books'
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { useBooksStore } from '~/store/books'
 
-const title = ref('')
-const author = ref('')
-const year = ref('')
-const genre = ref('')
-const valid = ref(false)
-const form = ref(null)
-const router = useRouter()
-const booksStore = useBooksStore()
+  const title = ref('')
+  const author = ref('')
+  const year = ref('')
+  const genre = ref('')
+  const valid = ref(false)
+  const form = ref(null)
+  const router = useRouter()
+  const booksStore = useBooksStore()
 
-const rules = {
-  required: (value) => !!value || 'Required.',
-  year: (value) => /^\d{4}$/.test(value) || 'Year must be a valid year (e.g., 2023).',
-}
+  const rules = {
+    required: (value) => !!value || 'Required.',
+    year: (value) => /^\d{4}$/.test(value) || 'Year must be a valid year (e.g., 2023).',
+  }
 
-const submit = () => {
-  form.value.validate().then(success => {
-    if (success) {
-      booksStore.addBook({ title: title.value, author: author.value, year: year.value, genre: genre.value, user: 'demo@mail.com' })
-      router.push('/')
-    }
-  })
-}
+  const submit = () => {
+    form.value.validate().then(success => {
+      if (success) {
+        booksStore.addBook({ title: title.value, author: author.value, year: year.value, genre: genre.value, user: 'demo@mail.com' })
+        router.push('/')
+      }
+    })
+  }
 </script>
-
-<style scoped>
-/* Custom CSS */
-</style>

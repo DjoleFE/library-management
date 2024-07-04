@@ -24,20 +24,21 @@ export const useBooksStore = defineStore('books', () => {
   // Učitavanje knjiga kada se store inicijalizuje
   loadBooks()
 
-  // Gledanje promene na books ref-u i čuvanje u localStorage
+  // Praćenje promena na books ref-u i čuvanje u localStorage
   watch(books, (newBooks) => {
     if (import.meta.client) {
       localStorage.setItem('books', JSON.stringify(newBooks))
-      console.log('Books saved to localStorage:', newBooks)
     }
   }, { deep: true })
 
+  // Dodavanje knjige
   const addBook = (book) => {
     book.id = books.value.length + 1
     books.value.push(book)
     console.log('Book added:', book)
   }
 
+  // Ažuriranje knjige
   const updateBook = (updatedBook) => {
     const index = books.value.findIndex(book => book.id === updatedBook.id)
     if (index !== -1) {
@@ -46,12 +47,13 @@ export const useBooksStore = defineStore('books', () => {
     }
   }
 
-
+  // Brisanje knjige
   const deleteBook = (id) => {
     books.value = books.value.filter(book => book.id !== id)
     console.log('Book deleted:', id)
   }
 
+  // Izvlačenje knjige sa određenim ID-jem
   const getBookById = (id) => {
     return books.value.find(book => book.id === id)
   }

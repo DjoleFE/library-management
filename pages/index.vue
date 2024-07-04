@@ -1,6 +1,5 @@
 <template>
   <div v-if="user" class="pb-4">
-
     <v-container class="mt-16">
       <v-row>
         <v-col cols="12" md="10" offset-md="1">
@@ -53,7 +52,6 @@
       </v-row>
     </v-container>
 
-    <!-- Delete Confirmation Dialog -->
     <v-dialog v-model="deleteDialog" max-width="500">
       <v-card>
         <v-card-title class="headline">Delete Book</v-card-title>
@@ -74,12 +72,10 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { useUserStore } from '~/store/user'
 import { useBooksStore } from '~/store/books'
 import { storeToRefs } from 'pinia'
 
-const router = useRouter()
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
 const booksStore = useBooksStore()
@@ -124,15 +120,15 @@ const filteredBooks = computed(() => {
 })
 
 const goToBook = (id) => {
-  router.push(`/books/${id}`)
+  navigateTo(`/books/${id}`)
 }
 
 const addBook = () => {
-  router.push('/books/add')
+  navigateTo('/books/add')
 }
 
 const editBook = (id) => {
-  router.push(`/books/edit/${id}`)
+  navigateTo(`/books/edit/${id}`)
 }
 
 const openDeleteDialog = (id) => {
@@ -154,6 +150,3 @@ const confirmDelete = () => {
 }
 </script>
 
-<style scoped>
-/* Custom CSS */
-</style>

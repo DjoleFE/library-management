@@ -87,7 +87,7 @@ const submit = () => {
         year: year.value,
         genre: genre.value
       })
-      router.push('/')
+      navigateTo('/')
     }
   })
 }

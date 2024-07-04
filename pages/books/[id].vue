@@ -41,6 +41,6 @@ onMounted(() => {
 })
 
 const goBack = () => {
-  router.push('/')
+  navigateTo('/')
 }
 </script>

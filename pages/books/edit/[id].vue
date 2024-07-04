@@ -8,34 +8,14 @@
           </v-card-title>
           <v-card-text>
             <v-form ref="form" v-model="valid" @submit.prevent="submit">
-              <v-text-field
-                class="mb-2"
-                v-model="title"
-                label="Title"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="author"
-                label="Author"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="year"
-                label="Year"
-                :rules="[rules.required, rules.year]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="genre"
-                label="Genre"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
+              <v-text-field class="mb-2" v-model="title" label="Title" :rules="[rules.required]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="author" label="Author" :rules="[rules.required]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="year" label="Year" :rules="[rules.required, rules.year]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="genre" label="Genre" :rules="[rules.required]"
+                required></v-text-field>
               <v-btn type="submit" color="indigo-darken-3" :disabled="!valid">Update Book</v-btn>
             </v-form>
           </v-card-text>

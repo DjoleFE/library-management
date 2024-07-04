@@ -8,34 +8,14 @@
           </v-card-title>
           <v-card-text>
             <v-form ref="form" v-model="valid" @submit.prevent="submit">
-              <v-text-field
-                class="mb-2"
-                v-model="title"
-                label="Title"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="author"
-                label="Author"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="year"
-                label="Year"
-                :rules="[rules.required, rules.year]"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="mb-2"
-                v-model="genre"
-                label="Genre"
-                :rules="[rules.required]"
-                required
-              ></v-text-field>
+              <v-text-field class="mb-2" v-model="title" label="Title" :rules="[rules.required]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="author" label="Author" :rules="[rules.required]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="year" label="Year" :rules="[rules.required, rules.year]"
+                required></v-text-field>
+              <v-text-field class="mb-2" v-model="genre" label="Genre" :rules="[rules.required]"
+                required></v-text-field>
               <v-btn type="submit" color="indigo-darken-3" :disabled="!valid">Add Book</v-btn>
             </v-form>
           </v-card-text>
@@ -46,30 +26,30 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { useBooksStore } from '~/store/books'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useBooksStore } from '~/store/books'
 
-  const title = ref('')
-  const author = ref('')
-  const year = ref('')
-  const genre = ref('')
-  const valid = ref(false)
-  const form = ref(null)
-  const router = useRouter()
-  const booksStore = useBooksStore()
+const title = ref('')
+const author = ref('')
+const year = ref('')
+const genre = ref('')
+const valid = ref(false)
+const form = ref(null)
+const router = useRouter()
+const booksStore = useBooksStore()
 
-  const rules = {
-    required: (value) => !!value || 'Required.',
-    year: (value) => /^\d{4}$/.test(value) || 'Year must be a valid year (e.g., 2023).',
-  }
+const rules = {
+  required: (value) => !!value || 'Required.',
+  year: (value) => /^\d{4}$/.test(value) || 'Year must be a valid year (e.g., 2023).',
+}
 
-  const submit = () => {
-    form.value.validate().then(success => {
-      if (success) {
-        booksStore.addBook({ title: title.value, author: author.value, year: year.value, genre: genre.value, user: 'demo@mail.com' })
-        router.push('/')
-      }
-    })
-  }
+const submit = () => {
+  form.value.validate().then(success => {
+    if (success) {
+      booksStore.addBook({ title: title.value, author: author.value, year: year.value, genre: genre.value, user: 'demo@mail.com' })
+      router.push('/')
+    }
+  })
+}
 </script>

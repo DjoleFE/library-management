@@ -1,12 +1,7 @@
 <template>
   <NuxtLayout>
     <v-app>
-      <v-app-bar
-        v-if="user"
-        color="teal-darken-4"
-        class="py-2"
-        image="https://picsum.photos/1920/1080?random"
-      >
+      <v-app-bar v-if="user" color="teal-darken-4" class="py-2" image="https://picsum.photos/1920/1080?random">
         <template v-slot:image>
           <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
         </template>
@@ -25,30 +20,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { navigateTo } from '#app'
-import { useUserStore } from '~/store/user'
-import { storeToRefs } from 'pinia'
+import { ref, onMounted } from "vue";
+import { navigateTo } from "#app";
+import { useUserStore } from "~/store/user";
+import { storeToRefs } from "pinia";
 
-const userStore = useUserStore()
-const isAuthenticated = ref(false)
-const { user } = storeToRefs(userStore)
+const userStore = useUserStore();
+const isAuthenticated = ref(false);
+const { user } = storeToRefs(userStore);
 
 const checkAuth = () => {
-  userStore.loadUser()
+  userStore.loadUser();
   if (userStore.user) {
-    isAuthenticated.value = true
+    isAuthenticated.value = true;
   } else {
-    navigateTo('/login')
+    navigateTo("/login");
   }
-}
+};
 
 const logout = () => {
-  userStore.clearUser()
-  navigateTo('/login')
-}
+  userStore.clearUser();
+  navigateTo("/login");
+};
 
 onMounted(() => {
-  checkAuth()
-})
+  checkAuth();
+});
 </script>
